@@ -12,3 +12,4 @@ Route::get('/posts', [PostsController::class, "index"]);
 Route::post('/create/post', [PostsController::class, "store"]);
 Route::get('search/post/{id}', [PostsController::class, "searchPost"]);
 Route::delete('/delete/{id}', [PostsController::class, "destroy"]);
+Route::put('editar/post/{id}', [PostsController::class, "updatePost"]);

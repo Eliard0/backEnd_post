@@ -50,6 +50,22 @@ class PostsController extends Controller
         return response()->json($post);
     }
 
+    public function updatePost(Request $request, $id)
+    {
+        $post = Post::findOrFail($id);
+        
+        $request->validate([
+            'title' => 'sometimes|required|string|max:255',
+            'author' => 'sometimes|required|string|max:255',
+            'content' => 'sometimes|required|string',
+            'tags' => 'nullable|array',
+        ]);
+
+        $post->update($request->only(['title', 'author', 'content', 'tags']));
+        
+        return response()->json($post);
+    }
+
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
