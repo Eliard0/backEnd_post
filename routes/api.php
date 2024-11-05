@@ -10,3 +10,5 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/posts', [PostsController::class, "index"]);
 Route::post('/create/post', [PostsController::class, "store"]);
+Route::get('search/post/{id}', [PostsController::class, "searchPost"]);
+Route::delete('/delete/{id}', [PostsController::class, "destroy"]);

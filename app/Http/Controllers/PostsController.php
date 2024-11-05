@@ -42,5 +42,19 @@ class PostsController extends Controller
                 'error' => $e->getMessage(),
             ], 500);
         }
+    }
+
+    public function searchPost($id)
+    {
+        $post = Post::findOrFail($id);
+        return response()->json($post);
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return response()->json(null, 204);
     }    
 }
