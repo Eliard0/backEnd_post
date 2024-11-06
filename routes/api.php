@@ -9,8 +9,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::get('/posts', [PostsController::class, "index"]);
-Route::post('/create/post', [PostsController::class, "store"]);
+Route::get('/posts', [PostsController::class, "getAllPosts"]);
+Route::post('/create/post', [PostsController::class, "createdPost"]);
 Route::get('search/post/{id}', [PostsController::class, "searchPost"]);
 Route::delete('/delete/{id}', [PostsController::class, "destroy"]);
 Route::put('editar/post/{id}', [PostsController::class, "updatePost"]);

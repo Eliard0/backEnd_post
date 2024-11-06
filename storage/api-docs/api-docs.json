@@ -1,0 +1,192 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My API",
+        "license": {
+            "name": "MIT"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/posts": {
+            "get": {
+                "summary": "List all posts",
+                "operationId": "4f61a3dda5671d8f47ffbf71d3a761a1",
+                "responses": {
+                    "200": {
+                        "description": "A list of posts"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new post",
+                "operationId": "3132c2dc87efa3f23a5dde1688a7ef69",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Post created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/posts/{id}": {
+            "get": {
+                "summary": "Get a post by ID",
+                "operationId": "76059b78317e44d03945eeb8f5c0beed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the post",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Post found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Post"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Post not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a post by ID",
+                "operationId": "7311e6a119e4019c24c75d228b39d33d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the post",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Post updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Post"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Post not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a post by ID",
+                "operationId": "e553c4a19f8ad23e7423cc67a10f8602",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the post",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Post deleted successfully"
+                    },
+                    "404": {
+                        "description": "Post not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Post": {
+                "required": [
+                    "title",
+                    "author",
+                    "content",
+                    "tags"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Post Title"
+                    },
+                    "author": {
+                        "type": "string",
+                        "example": "Author Name"
+                    },
+                    "content": {
+                        "type": "string",
+                        "example": "Post content"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": "[\"tag1\", \"tag2\", \"tag3\"]"
+                    }
+                },
+                "type": "object"
+            },
+            "IntegerSchema": {
+                "description": "Um número inteiro representando o ID do post.",
+                "type": "integer",
+                "example": 1
+            }
+        }
+    }
+}
